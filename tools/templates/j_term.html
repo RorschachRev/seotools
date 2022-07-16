@@ -1,0 +1,24 @@
+{% regroup rows by pos as term_by_pos %}
+{% for pos in term_by_pos %}
+{'{{ pos.grouper }}':[{
+{% regroup pos.list by sense as term_list %}
+{% for t in term_list %}
+	{% for item in t.list %}
+	{% if forloop.first %}
+	['def'][{{ item.sense }}]:'{{ item.sdef }}',
+	{% endif %}
+	{% endfor %}
+	]}, {# end of definitions #}
+
+	{% for item in t.list %}
+	{% if forloop.first %}
+	[
+	{% endif %}
+     	'{{ item.linklem }}':'{{ item.link }}',
+	{% endfor %}
+	], {# end of sense lemma #}
+     
+{% endfor %} {# end of terms #}
+],
+{% endfor %} {# end of pos #}
+}

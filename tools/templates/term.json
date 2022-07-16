@@ -1,0 +1,3 @@
+{% if tags %}
+{{ tags|safe }}
+{% endif %}

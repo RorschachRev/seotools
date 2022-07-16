@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Terms{% endblock %}
+{% block content %}
+        <h1> Terms Research</h1>
+{{rows.t}}
+<table border='1'>
+	<tr class="res">
+            <th>Sense</th>
+            <th>Lemma</th>
+            <th>Type</th>
+            <th>Lemma</th>
+            <th>Def</th>
+        </tr>
+        {% for r in rows %}
+        <tr class="res">
+            <td>{{r.sense}} </td>
+            <td>{{r.swlem}} </td>
+            <td>{{r.link}} </td>
+            <td>{{r.linklem}} </td>
+            <td>{{r.sdef}} </td>
+        </tr>
+        {% endfor %}
+</table>
+    {% endblock %}

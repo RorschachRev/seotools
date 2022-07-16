@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Dictionary Terms{% endblock %}
+{% block content %}
+        <h1>Dictionary Meaning Research</h1>
+<table border='1'>
+	<tr class="res">
+            <th>Lemma</th>
+            <th>Part of Speech</th>
+            <th>Sense</th>
+            <th>ID</th>
+            <th>Definition</th>
+            <th>Sample</th>
+        </tr>
+        {% for r in rows%}
+        <tr class="res">
+            <td>{{r.lemma}} </td>
+            <td>{{r.pos}} </td>
+            <td>{{r.sensenum}} </td>
+            <td>{{r.synsetid}} </td>
+            <td>{{r.defin}} </td>
+            <td>{{r.sample}} </td>
+
+        </tr>
+        {% endfor %}
+</table>
+    {% endblock %}

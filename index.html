@@ -1,0 +1,3097 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Strip HTML from strings in Python - Stack Overflow</title>
+    <link rel="shortcut icon" href="//cdn.sstatic.net/stackoverflow/img/favicon.ico?v=5bcec08ba0c5">
+    <link rel="apple-touch-icon image_src" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com"/>
+    <meta name="og:type" content="website" />
+    <meta name="og:image" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6"/>
+    <meta name="og:title" content="Strip HTML from strings in Python" />
+    <meta name="og:description" content="from mechanize import Browser
+br = Browser()
+br.open(&#39;http://somewebpage&#39;)
+html = br.response().readlines()
+for line in html:
+  print line
+
+
+When printing a line in an HTML file, I&#39;m trying to find..." />
+    <meta name="og:url" content="http://stackoverflow.com/questions/753052/strip-html-from-strings-in-python"/>
+    <link rel="canonical" href="http://stackoverflow.com/questions/753052/strip-html-from-strings-in-python" />
+
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//cdn.sstatic.net/Js/stub.en.js?v=1b9b707a8f97"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.sstatic.net/stackoverflow/all.css?v=884f021ebd40">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Strip HTML from strings in Python&#39;" href="/feeds/question/753052">
+    <script>
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:753052});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '753052');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1396309994,"networkMetaHostname":"meta.stackoverflow.com","styleCode":true,"enableUserHovercards":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"9f415699b696c49a0300146fe000d4c1","isAnonymous":true,"ab":{"welcome_email":{"v":"2","g":2}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"6b491ea6ff36","js/moderator.en.js":"c88517b62f5d","js/full-anon.en.js":"076958c86ee1","js/full.en.js":"2a0e112f5e0b","js/wmd.en.js":"eb623358a94f","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"2f3fd97c252e","js/help.en.js":"b13c42914aa7","js/tageditor.en.js":"2f58a6cd11c6","js/tageditornew.en.js":"fca3466a5e91","js/inline-tag-editing.en.js":"0f0848e41637","js/revisions.en.js":"fbb5841ff357","js/review.en.js":"fd3ec2f1d7b9","js/tagsuggestions.en.js":"243a4d6197ca","js/post-validation.en.js":"ec201809aa23","js/explore-qlist.en.js":"4740c98bedd8","js/events.en.js":"956e9dc3fe87"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+        
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+</head>
+<body class="question-page new-topbar">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+<div class="topbar">
+    <div class="topbar-wrapper">
+        
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="//stackoverflow.com">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com"     data-gps-track="site_switcher.click({ item_type:6 })"
+>chat</a>
+                    <a href="http://blog.stackexchange.com"     data-gps-track="site_switcher.click({ item_type:7 })"
+>blog</a>
+            </div>
+
+
+
+
+    <a href="//stackoverflow.com"
+       class="current-site-link site-link js-gps-track"
+       data-id="1"
+       data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="//meta.stackoverflow.com"
+       class="site-link js-gps-track"
+       data-id="4"
+       data-gps-track="
+            site.switch({ target_site:4, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link"
+                       href="//careers.stackoverflow.com"
+                            data-gps-track="site_switcher.click({ item_type:9 })"
+>
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Careers 2.0
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+                        <a href="https://stackoverflow.com/users/signup?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f753052%2fstrip-html-from-strings-in-python" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:10 })"
+>Sign up</a>
+                    or
+                    <a href="https://stackoverflow.com/users/login?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f753052%2fstrip-html-from-strings-in-python" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:11 })"
+>log in</a>
+
+                    to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="//stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+            
+            <a href="//stackexchange.com" 
+               class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track"
+               data-gps-track="site_switcher.show"
+               title="A list of all 120 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+            
+        </div>
+
+        <div class="topbar-links">
+            
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://stackoverflow.com/users/signup?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f753052%2fstrip-html-from-strings-in-python" class="login-link">sign up</a>
+                            <a href="https://stackoverflow.com/users/login?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f753052%2fstrip-html-from-strings-in-python" class="login-link">log in</a>
+                        <a href="/tour">tour</a>
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                <li>
+                    <a href="/tour"     class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })"
+>
+                        Tour
+                        <span class="item-summary">
+                            Start here for a quick overview of the site
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/help"     class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })"
+>
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="//meta.stackoverflow.com"     class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })"
+>
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="//careers.stackoverflow.com">careers 2.0</a>
+                    </span>
+                </div>
+
+			<div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240" />
+                </form>
+			</div>
+            	
+        </div>      
+    </div> 
+</div>
+<script>
+    StackExchange.ready(function () {
+        //topbar.init();
+        StackExchange.topbar.init();
+    });
+</script>
+    <div class="container">
+        <div id="header" class=headeranon>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs mainnavsanon">
+                    <ul>
+                            <li class="youarehere"><a id="nav-questions" href="/questions">Questions</a></li>
+                            <li><a id="nav-tags" href="/tags">Tags</a></li>
+                            <li><a id="nav-tour" href="/about">Tour</a></li>
+                            <li><a id="nav-users" href="/users">Users</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion"  href="/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope itemtype="http://schema.org/Article">
+	<link itemprop="image" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="/about" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">&times;</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a question and answer site for professional and enthusiast programmers. It&#39;s 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/" });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="/questions/753052/strip-html-from-strings-in-python" class="question-hyperlink">Strip HTML from strings in Python</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="753052"  id="question">
+    
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk43165248",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk43165248">
+            </div>    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="753052">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span class="vote-count-post ">94</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>89</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="description">
+
+        <pre><code>from mechanize import Browser
+br = Browser()
+br.open('http://somewebpage')
+html = br.response().readlines()
+for line in html:
+  print line
+</code></pre>
+
+<p>When printing a line in an HTML file, I'm trying to find a way to only show the contents of each HTML element and not the formatting itself. If it finds <code>'&lt;a href="whatever.com"&gt;some text&lt;/a&gt;'</code>, it will only print 'some text', <code>'&lt;b&gt;hello&lt;/b&gt;'</code> prints 'hello', etc. How would one go about doing this?</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/python" class="post-tag" title="show questions tagged &#39;python&#39;" rel="tag">python</a> <a href="/questions/tagged/html" class="post-tag" title="show questions tagged &#39;html&#39;" rel="tag">html</a> 
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/q/753052" title="short permalink to this question" class="short-link" id="link-post-753052">share</a><span class="lsep">|</span><a href="/posts/753052/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/753052/revisions" title="show all edits to this post">edited <span title="2013-07-20 21:38:47Z" class="relativetime">Jul 20 '13 at 21:38</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/63550/peter-mortensen"><div class="gravatar-wrapper-32"><img src="http://i.stack.imgur.com/RIZKi.png?s=32&g=1" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/63550/peter-mortensen">Peter Mortensen</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">7,081</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="49 silver badges"><span class="badge2"></span><span class="badgecount">49</span></span><span title="80 bronze badges"><span class="badge3"></span><span class="badgecount">80</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2009-04-15 18:24:26Z" class="relativetime">Apr 15 '09 at 18:24</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/76322/directedition"><div><img src="https://www.gravatar.com/avatar/11d96a3c3781b68e7341a0f96f85dc3a?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/76322/directedition">directedition</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,806</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="24 silver badges"><span class="badge2"></span><span class="badgecount">24</span></span><span title="45 bronze badges"><span class="badge3"></span><span class="badgecount">45</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</div>
+</td>
+        </tr>
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-753052" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-9471389" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="warm">7</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">An important consideration is how to handle HTML entities (e.g. <code>&amp;amp;</code>). You can either 1) remove them along with the tags (often undesirable, and unnecessary as they are equivalent to plain text), 2) leave them unchanged (a suitable solution if the stripped text is going right back into an HTML context) or 3) decode them to plain text (if the stripped text is going into a database or some other non-HTML context, or if your web framework automatically performs HTML escaping of text for you).</span>
+                &ndash;&nbsp;
+                    <a href="/users/136796/soren-lovborg"
+                       title="3101 reputation"
+                       class="comment-user">S&#248;ren L&#248;vborg</a>
+                <span class="comment-date" dir="ltr"><span title="2011-10-15 12:58:10Z" class="relativetime-clean">Oct 15 '11 at 12:58</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-29993906" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">for @S&#248;renL&#248;vborg point 2): <a href="http://stackoverflow.com/questions/753052/strip-html-from-strings-in-python#13703994" title="strip html from strings in python%2313703994">stackoverflow.com/questions/753052/&hellip;</a></span>
+                &ndash;&nbsp;
+                    <a href="/users/1094246/robert"
+                       title="315 reputation"
+                       class="comment-user">Robert</a>
+                <span class="comment-date" dir="ltr"><span title="2013-11-21 16:40:47Z" class="relativetime-clean">Nov 21 '13 at 16:40</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-753052" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments." 
+				>add comment</a>
+    </td>
+</tr>            </table>    
+</div>
+
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								12 Answers
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="/questions/753052/strip-html-from-strings-in-python?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="/questions/753052/strip-html-from-strings-in-python?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="/questions/753052/strip-html-from-strings-in-python?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="925630"></a>
+<div id="answer-925630" class="answer accepted-answer" data-answerid="925630" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="925630">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">159</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>I always used this function to strip HTML tags, as it requires only the Python stdlib:</p>
+
+<pre><code>from HTMLParser import HTMLParser
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+</code></pre>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/925630" title="short permalink to this answer" class="short-link" id="link-post-925630">share</a><span class="lsep">|</span><a href="/posts/925630/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/925630/revisions" title="show all edits to this post">edited <span title="2013-07-20 21:39:19Z" class="relativetime">Jul 20 '13 at 21:39</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/63550/peter-mortensen"><div class="gravatar-wrapper-32"><img src="http://i.stack.imgur.com/RIZKi.png?s=32&g=1" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/63550/peter-mortensen">Peter Mortensen</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">7,081</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="49 silver badges"><span class="badge2"></span><span class="badgecount">49</span></span><span title="80 bronze badges"><span class="badge3"></span><span class="badgecount">80</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2009-05-29 11:47:41Z" class="relativetime">May 29 '09 at 11:47</span>
+    </div>
+    <div class="user-gravatar32">
+        <span class="anonymous-gravatar"></span>
+    </div>
+    <div class="user-details">
+        Eloff<br>
+        
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-925630" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="5" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-6341133" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Beautiful Soup is awesome, but thanks so much for this also, this worked perfectly for me.</span>
+                &ndash;&nbsp;
+                    <a href="/users/297824/virgil-disgr4ce"
+                       title="482 reputation"
+                       class="comment-user">Virgil Disgr4ce</a>
+                <span class="comment-date" dir="ltr"><span title="2011-04-06 22:24:04Z" class="relativetime-clean">Apr 6 '11 at 22:24</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-8865891" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Two years+ later, facing the same issue, and this is a far more elegant solution. Only change I made was to return self.fed as a list, rather than joining it, so I could step through the element contents.</span>
+                &ndash;&nbsp;
+                    <a href="/users/76322/directedition"
+                       title="1806 reputation"
+                       class="comment-user owner">directedition</a>
+                <span class="comment-date" dir="ltr"><span title="2011-09-08 14:04:40Z" class="relativetime-clean">Sep 8 '11 at 14:04</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-9471409" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="hot">24</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Note that this strips HTML entities (e.g. <code>&amp;amp;</code>) as well as tags.</span>
+                &ndash;&nbsp;
+                    <a href="/users/136796/soren-lovborg"
+                       title="3101 reputation"
+                       class="comment-user">S&#248;ren L&#248;vborg</a>
+                <span class="comment-date" dir="ltr"><span title="2011-10-15 13:00:02Z" class="relativetime-clean">Oct 15 '11 at 13:00</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-13793274" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You can directly use regular expressions. 3 lines code.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1162468/surya"
+                       title="1781 reputation"
+                       class="comment-user">Surya</a>
+                <span class="comment-date" dir="ltr"><span title="2012-05-17 16:28:18Z" class="relativetime-clean">May 17 '12 at 16:28</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-14514604" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="hot">19</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@surya I&#39;m sure you&#39;ve <a href="http://www.codinghorror.com/blog/2009/11/parsing-html-the-cthulhu-way.html" rel="nofollow">seen this</a></span>
+                &ndash;&nbsp;
+                    <a href="/users/269581/tkone"
+                       title="7075 reputation"
+                       class="comment-user">tkone</a>
+                <span class="comment-date" dir="ltr"><span title="2012-06-18 15:34:02Z" class="relativetime-clean">Jun 18 '12 at 15:34</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-925630" data-rep=50 data-anon=true
+			   class="comments-link " 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>show <b>5</b> more comments</a>
+    </td>
+</tr>
+    </table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk824286220",4).setZone(44) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk824286220">
+            </div>
+  
+<a name="4869782"></a>
+<div id="answer-4869782" class="answer" data-answerid="4869782" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="4869782">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">46</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>I haven't thought much about the cases it will miss, but you can do a simple regex:</p>
+
+<pre><code>re.sub('&lt;[^&lt;]+?&gt;', '', text)
+</code></pre>
+
+<p>For those that don't understand regex, this searches for a string <code>&lt;...&gt;</code>, where the inner content is made of one or more (<code>+</code>) characters that isn't a <code>&lt;</code>. The <code>?</code> means that it will match the smallest string it can find. For example given <code>&lt;p&gt;Hello&lt;/p&gt;</code>, it will match <code>&lt;'p&gt;</code> and <code>&lt;/p&gt;</code> separately with the <code>?</code>. Without it, it will match the entire string <code>&lt;..Hello..&gt;</code>.</p>
+
+<p>If non-tag <code>&lt;</code> appears in html (eg. <code>2 &lt; 3</code>), it should be written as an escape sequence <code>&amp;...</code> anyway so the <code>^&lt;</code> may be unnecessary.</p>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/4869782" title="short permalink to this answer" class="short-link" id="link-post-4869782">share</a><span class="lsep">|</span><a href="/posts/4869782/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/4869782/revisions" title="show all edits to this post">edited <span title="2013-08-05 14:55:49Z" class="relativetime">Aug 5 '13 at 14:55</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/903011/woj"><div><img src="https://www.gravatar.com/avatar/6a8f2f5f292c75c5e81a6607530a0ab6?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/903011/woj">WoJ</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">414</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-02-02 01:09:16Z" class="relativetime">Feb 2 '11 at 1:09</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/577938/mmmdreg"><div><img src="https://www.gravatar.com/avatar/d6c32117da4f4eb98110412e5b29e5b6?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/577938/mmmdreg">mmmdreg</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">858</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="11 bronze badges"><span class="badge3"></span><span class="badgecount">11</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-4869782" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="1" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-6231099" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This is almost exactly how Django&#39;s <a href="http://code.djangoproject.com/browser/django/trunk/django/utils/html.py" rel="nofollow">strip_tags</a> does it.</span>
+                &ndash;&nbsp;
+                    <a href="/users/62269/bluu"
+                       title="779 reputation"
+                       class="comment-user">Bluu</a>
+                <span class="comment-date" dir="ltr"><span title="2011-03-30 20:50:01Z" class="relativetime-clean">Mar 30 '11 at 20:50</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-9471415" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Note that this leaves HTML entities (e.g. <code>&amp;amp;</code>) unchanged in the output.</span>
+                &ndash;&nbsp;
+                    <a href="/users/136796/soren-lovborg"
+                       title="3101 reputation"
+                       class="comment-user">S&#248;ren L&#248;vborg</a>
+                <span class="comment-date" dir="ltr"><span title="2011-10-15 13:01:13Z" class="relativetime-clean">Oct 15 '11 at 13:01</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-24080274" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">4</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">One can still trick this method with something like this:  &lt;script&lt;script&gt;&gt;alert(&quot;Hi!&quot;)&lt;&lt;/script&gt;/script&gt;</span>
+                &ndash;&nbsp;
+                    <a href="/users/822159/julio-garcia"
+                       title="400 reputation"
+                       class="comment-user">Julio Garc&#237;a</a>
+                <span class="comment-date" dir="ltr"><span title="2013-05-23 21:13:01Z" class="relativetime-clean">May 23 '13 at 21:13</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-24085901" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I suppose it would be up to the user to make sure the input is proper html.</span>
+                &ndash;&nbsp;
+                    <a href="/users/577938/mmmdreg"
+                       title="858 reputation"
+                       class="comment-user">mmmdreg</a>
+                <span class="comment-date" dir="ltr"><span title="2013-05-24 02:51:25Z" class="relativetime-clean">May 24 '13 at 2:51</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-27553319" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">DON&#39;T DO IT THIS WAY!  As @Julio Garcia says, it is NOT SAFE!</span>
+                &ndash;&nbsp;
+                    <a href="/users/88198/rescdsk"
+                       title="3690 reputation"
+                       class="comment-user">rescdsk</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-09 15:51:00Z" class="relativetime-clean">Sep 9 '13 at 15:51</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-4869782" data-rep=50 data-anon=true
+			   class="comments-link " 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>show <b>1</b> more comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="7778368"></a>
+<div id="answer-7778368" class="answer" data-answerid="7778368" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="7778368">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">14</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>I needed a way to strip tags <em>and</em> decode HTML entities to plain text. The following solution is based on Eloff's answer (which I couldn't use because it strips entities).</p>
+
+<pre><code>from HTMLParser import HTMLParser
+import htmlentitydefs
+
+class HTMLTextExtractor(HTMLParser):
+    def __init__(self):
+        HTMLParser.__init__(self)
+        self.result = [ ]
+
+    def handle_data(self, d):
+        self.result.append(d)
+
+    def handle_charref(self, number):
+        codepoint = int(number[1:], 16) if number[0] in (u'x', u'X') else int(number)
+        self.result.append(unichr(codepoint))
+
+    def handle_entityref(self, name):
+        codepoint = htmlentitydefs.name2codepoint[name]
+        self.result.append(unichr(codepoint))
+
+    def get_text(self):
+        return u''.join(self.result)
+
+def html_to_text(html):
+    s = HTMLTextExtractor()
+    s.feed(html)
+    return s.get_text()
+</code></pre>
+
+<p>A quick test:</p>
+
+<pre><code>html = u'&lt;a href="#"&gt;Demo &lt;em&gt;(&amp;not; \u0394&amp;#x03b7;&amp;#956;&amp;#x03CE;)&lt;/em&gt;&lt;/a&gt;'
+print repr(html_to_text(html))
+</code></pre>
+
+<p>Result:</p>
+
+<pre><code>u'Demo (\xac \u0394\u03b7\u03bc\u03ce)'
+</code></pre>
+
+<p>Error handling:</p>
+
+<ul>
+<li>Invalid HTML structure may cause an <a href="http://docs.python.org/library/htmlparser.html#HTMLParser.HTMLParseError">HTMLParseError</a>.</li>
+<li>Invalid named HTML entities (such as <code>&amp;#apos;</code>, which is valid in XML and XHTML, but not plain HTML) will cause a <code>ValueError</code> exception.</li>
+<li>Numeric HTML entities specifying code points outside the Unicode range acceptable by Python (such as, on some systems, characters outside the <a href="http://en.wikipedia.org/wiki/Basic_Multilingual_Plane">Basic Multilingual Plane</a>) will cause a <code>ValueError</code> exception.</li>
+</ul>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/7778368" title="short permalink to this answer" class="short-link" id="link-post-7778368">share</a><span class="lsep">|</span><a href="/posts/7778368/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-10-15 14:19:55Z" class="relativetime">Oct 15 '11 at 14:19</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/136796/soren-lovborg"><div class="gravatar-wrapper-32"><img src="http://www.gravatar.com/avatar/c8f6d569508d3f79fd2d9390a56935d0?s=128&d=identicon&r=PG" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/136796/soren-lovborg">S&#248;ren L&#248;vborg</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,101</span><span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span><span title="24 bronze badges"><span class="badge3"></span><span class="badgecount">24</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7778368" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-7778368" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="13703994"></a>
+<div id="answer-13703994" class="answer" data-answerid="13703994" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="13703994">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">9</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>If you need to preserve HTML entities (i.e. <code>&amp;amp;</code>), I added "handle_entityref" method to <a href="http://stackoverflow.com/a/925630/1094246">Eloff's answer</a>.</p>
+
+<pre><code>from HTMLParser import HTMLParser
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+    def handle_data(self, d):
+        self.fed.append(d)
+    def handle_entityref(self, name):
+        self.fed.append('&amp;%s;' % name)
+    def get_data(self):
+        return ''.join(self.fed)
+
+def html_to_text(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
+</code></pre>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/13703994" title="short permalink to this answer" class="short-link" id="link-post-13703994">share</a><span class="lsep">|</span><a href="/posts/13703994/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-12-04 13:25:42Z" class="relativetime">Dec 4 '12 at 13:25</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1094246/robert"><div><img src="https://www.gravatar.com/avatar/dda38b3b4f0bd9b57759601a3652e520?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1094246/robert">Robert</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">315</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-13703994" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-13703994" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="14464381"></a>
+<div id="answer-14464381" class="answer" data-answerid="14464381" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="14464381">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">5</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>There's a simple way to this:</p>
+
+<pre><code>def remove_html_markup(s):
+    tag = False
+    quote = False
+    out = ""
+
+    for c in s:
+            if c == '&lt;' and not quote:
+                tag = True
+            elif c == '&gt;' and not quote:
+                tag = False
+            elif (c == '"' or c == "'") and tag:
+                quote = not quote
+            elif not tag:
+                out = out + c
+
+    return out
+</code></pre>
+
+<p>The idea is explained here: <a href="http://youtu.be/2tu9LTDujbw">http://youtu.be/2tu9LTDujbw</a></p>
+
+<p>You can see it working here: <a href="http://youtu.be/HPkNPcYed9M?t=35s">http://youtu.be/HPkNPcYed9M?t=35s</a></p>
+
+<p>PS - If you're interested in the class(about smart debugging with python) I give you a link: <a href="http://www.udacity.com/overview/Course/cs259/CourseRev/1">http://www.udacity.com/overview/Course/cs259/CourseRev/1</a>. It's free! </p>
+
+<p>You're welcome! :)</p>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/14464381" title="short permalink to this answer" class="short-link" id="link-post-14464381">share</a><span class="lsep">|</span><a href="/posts/14464381/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/14464381/revisions" title="show all edits to this post">edited <span title="2013-01-22 17:27:41Z" class="relativetime">Jan 22 '13 at 17:27</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-01-22 17:22:29Z" class="relativetime">Jan 22 '13 at 17:22</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1402286/medeiros"><div><img src="https://www.gravatar.com/avatar/34c32819716d34f3d927423773cbe944?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1402286/medeiros">Medeiros</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">498</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14464381" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-26856449" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks. Really simple.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1857292/jimmy-kane"
+                       title="3294 reputation"
+                       class="comment-user">Jimmy Kane</a>
+                <span class="comment-date" dir="ltr"><span title="2013-08-18 20:22:19Z" class="relativetime-clean">Aug 18 '13 at 20:22</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-27274820" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I wonder why this answer just got downvoted. It&#39;s a simple way to solve the problem without any lib. Just pure python and it works as shown by the links.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1402286/medeiros"
+                       title="498 reputation"
+                       class="comment-user">Medeiros</a>
+                <span class="comment-date" dir="ltr"><span title="2013-08-30 23:27:55Z" class="relativetime-clean">Aug 30 '13 at 23:27</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-27285547" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Probably people prefer libs to give them safety. I tested you code and passed, and I always prefer small code that I understand than using a lib and assuming that it&#39;s ok until a bug pops up. For me that&#39;s what I was looking for and again thanks. Regarding the downvotes, don&#39;t get in that mindset. People here should care about the quality and not the votes. Lately SO has become a place where everyone want&#39;s points and not knowledge.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1857292/jimmy-kane"
+                       title="3294 reputation"
+                       class="comment-user">Jimmy Kane</a>
+                <span class="comment-date" dir="ltr"><span title="2013-08-31 14:24:05Z" class="relativetime-clean">Aug 31 '13 at 14:24</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-27701400" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The problem with this solution is error handling. For example if you give <code>&lt;b class=&quot;o&#39;&gt;x&lt;&#47;b&gt;</code> as input function outputs <code>x</code>. But actually this input is invalid. I think that&#39;s why people prefer libs.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1330198/laltin"
+                       title="345 reputation"
+                       class="comment-user">laltin</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-13 13:20:05Z" class="relativetime-clean">Sep 13 '13 at 13:20</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-27735930" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It works with that input too. Just tested. Just realize that inside those libraries you&#39;ll find similar code. It&#39;s not very pythonic, I know. Looks like C or Java code. I think it&#39;s efficient and can easily ported to another language.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1402286/medeiros"
+                       title="498 reputation"
+                       class="comment-user">Medeiros</a>
+                <span class="comment-date" dir="ltr"><span title="2013-09-14 21:18:31Z" class="relativetime-clean">Sep 14 '13 at 21:18</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-14464381" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="753083"></a>
+<div id="answer-753083" class="answer" data-answerid="753083" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="753083">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">2</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>You can use either a different HTML parser (<a href="http://codespeak.net/lxml/" rel="nofollow">like lxml</a>, or <a href="http://www.crummy.com/software/BeautifulSoup/" rel="nofollow">Beautiful Soup</a>) -- one that offers functions to extract just text. Or, you can run a regex on your line string that strips out the tags. See <a href="http://www.amk.ca/python/howto/regex/" rel="nofollow">http://www.amk.ca/python/howto/regex/</a> for more.</p>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/753083" title="short permalink to this answer" class="short-link" id="link-post-753083">share</a><span class="lsep">|</span><a href="/posts/753083/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/753083/revisions" title="show all edits to this post">edited <span title="2011-10-29 00:50:07Z" class="relativetime">Oct 29 '11 at 0:50</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/298171/fish2000"><div class="gravatar-wrapper-32"><img src="http://i.stack.imgur.com/fp85I.jpg?s=32&g=1" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/298171/fish2000">fish2000</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,404</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2009-04-15 18:31:01Z" class="relativetime">Apr 15 '09 at 18:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/59753/jcoon"><div><img src="https://www.gravatar.com/avatar/3142149e70f7e11e86905a8b0f5311ec?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/59753/jcoon">jcoon</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,363</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="19 silver badges"><span class="badge2"></span><span class="badgecount">19</span></span><span title="36 bronze badges"><span class="badge3"></span><span class="badgecount">36</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-753083" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-4408273" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">amk link is dead.  Got an alternative?</span>
+                &ndash;&nbsp;
+                    <a href="/users/1228/will"
+                       title="73879 reputation"
+                       class="comment-user">Will</a>
+                <span class="comment-date" dir="ltr"><span title="2010-11-04 13:17:02Z" class="relativetime-clean">Nov 4 '10 at 13:17</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-4408628" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The Python website has good how-tos now, here is the regex how-to: <a href="http://docs.python.org/howto/regex" rel="nofollow">docs.python.org/howto/regex</a></span>
+                &ndash;&nbsp;
+                    <a href="/users/59753/jcoon"
+                       title="5363 reputation"
+                       class="comment-user">jcoon</a>
+                <span class="comment-date" dir="ltr"><span title="2010-11-04 13:44:15Z" class="relativetime-clean">Nov 4 '10 at 13:44</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-6232308" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">In lxml: <code>lxml.html.fromstring(s).text_content()</code></span>
+                &ndash;&nbsp;
+                    <a href="/users/62269/bluu"
+                       title="779 reputation"
+                       class="comment-user">Bluu</a>
+                <span class="comment-date" dir="ltr"><span title="2011-03-30 22:18:15Z" class="relativetime-clean">Mar 30 '11 at 22:18</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-9471427" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Bluu&#39;s example with lxml decodes HTML entities (e.g. <code>&amp;amp;</code>) to text.</span>
+                &ndash;&nbsp;
+                    <a href="/users/136796/soren-lovborg"
+                       title="3101 reputation"
+                       class="comment-user">S&#248;ren L&#248;vborg</a>
+                <span class="comment-date" dir="ltr"><span title="2011-10-15 13:02:57Z" class="relativetime-clean">Oct 15 '11 at 13:02</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-753083" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="11086026"></a>
+<div id="answer-11086026" class="answer" data-answerid="11086026" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="11086026">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>I have used Eloff's answer successfully for Python 3.1 [many thanks!].</p>
+
+<p>I upgraded to Python 3.2.3, and ran into errors. </p>
+
+<p>The solution, provided <a href="http://stackoverflow.com/questions/11061058/using-htmlparser-in-python-3-2">here</a> thanks to the responder Thomas K, is to insert <code>super().__init__()</code> into the following code:</p>
+
+<pre><code>def __init__(self):
+    self.reset()
+    self.fed = []
+</code></pre>
+
+<p>... in order to make it look like this:</p>
+
+<pre><code>def __init__(self):
+    super().__init__()
+    self.reset()
+    self.fed = []
+</code></pre>
+
+<p>... and it will work for Python 3.2.3.</p>
+
+<p>Again, thanks to Thomas K for the fix and for Eloff's original code provided above!</p>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/11086026" title="short permalink to this answer" class="short-link" id="link-post-11086026">share</a><span class="lsep">|</span><a href="/posts/11086026/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-06-18 15:29:15Z" class="relativetime">Jun 18 '12 at 15:29</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1460152/milesnielsen"><div><img src="https://www.gravatar.com/avatar/d02672aa465c9f9f6f7f17c98ad83594?s=32&d=identicon&r=PG&f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1460152/milesnielsen">MilesNielsen</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">57</span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11086026" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-11086026" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="14603269"></a>
+<div id="answer-14603269" class="answer" data-answerid="14603269" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="14603269">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>If you want to strip all HTML tags the easiest way I found is using BeautifulSoup:</p>
+
+<pre><code>from bs4 import BeautifulSoup 
+
+def stripHtmlTags(self, htmlTxt):
+if htmlTxt is None:
+        return None
+    else:
+        return ''.join(BeautifulSoup(htmlTxt).findAll(text=True)) 
+</code></pre>
+
+<p>I tried the code of the accepted answer but I was getting  "RuntimeError: maximum recursion depth exceeded", which didn't happen with the above block of code.</p>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/14603269" title="short permalink to this answer" class="short-link" id="link-post-14603269">share</a><span class="lsep">|</span><a href="/posts/14603269/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-01-30 11:47:49Z" class="relativetime">Jan 30 '13 at 11:47</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/260108/vasilis"><div><img src="https://www.gravatar.com/avatar/71902996ae82f5b4fdd9c27e11cec4b5?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/260108/vasilis">Vasilis</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">331</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14603269" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-25030073" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I just tried your method because it seems cleaner, it worked, well kind of... it didn&#39;t strip input tags!</span>
+                &ndash;&nbsp;
+                    <a href="/users/922155/kustomrtr"
+                       title="97 reputation"
+                       class="comment-user">kustomrtr</a>
+                <span class="comment-date" dir="ltr"><span title="2013-06-24 02:48:52Z" class="relativetime-clean">Jun 24 '13 at 2:48</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-14603269" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="3856657"></a>
+<div id="answer-3856657" class="answer" data-answerid="3856657" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="3856657">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>You can write your own function:</p>
+
+<pre><code>def StripTags(text):
+     finished = 0
+     while not finished:
+         finished = 1
+         start = text.find("&lt;")
+         if start &gt;= 0:
+             stop = text[start:].find("&gt;")
+             if stop &gt;= 0:
+                 text = text[:start] + text[start+stop+1:]
+                 finished = 0
+     return text
+</code></pre>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/3856657" title="short permalink to this answer" class="short-link" id="link-post-3856657">share</a><span class="lsep">|</span><a href="/posts/3856657/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="/posts/3856657/revisions" title="show all edits to this post">edited <span title="2013-07-20 21:39:52Z" class="relativetime">Jul 20 '13 at 21:39</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/63550/peter-mortensen"><div class="gravatar-wrapper-32"><img src="http://i.stack.imgur.com/RIZKi.png?s=32&g=1" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/63550/peter-mortensen">Peter Mortensen</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">7,081</span><span title="8 gold badges"><span class="badge1"></span><span class="badgecount">8</span></span><span title="49 silver badges"><span class="badge2"></span><span class="badgecount">49</span></span><span title="80 bronze badges"><span class="badge3"></span><span class="badgecount">80</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2010-10-04 15:26:49Z" class="relativetime">Oct 4 '10 at 15:26</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/454229/gunslinger"><div class="gravatar-wrapper-32"><img src="http://i.stack.imgur.com/vRkZE.jpg?s=32&g=1" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/454229/gunslinger">Gunslinger_</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,970</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span><span title="26 bronze badges"><span class="badge3"></span><span class="badgecount">26</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3856657" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-4896587" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Does appending to strings create a new copy of the string?</span>
+                &ndash;&nbsp;
+                    <a href="/users/70519/nerdling"
+                       title="3346 reputation"
+                       class="comment-user">Nerdling</a>
+                <span class="comment-date" dir="ltr"><span title="2010-12-18 14:18:05Z" class="relativetime-clean">Dec 18 '10 at 14:18</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-5502859" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Nerdling - Yes it does, which can lead to some rather impressive inefficiencies in frequently used functions (or, for that matter, infrequently used functions that act on large blobs of text.) See <a href="http://wiki.python.org/moin/PythonSpeed/PerformanceTips#StringConcatenation" rel="nofollow">this</a> page for for detail. :D</span>
+                &ndash;&nbsp;
+                    <a href="/users/138421/jeremy-sandell"
+                       title="344 reputation"
+                       class="comment-user">Jeremy Sandell</a>
+                <span class="comment-date" dir="ltr"><span title="2011-02-08 17:30:41Z" class="relativetime-clean">Feb 8 '11 at 17:30</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </td>
+    </tr>
+    <tr id="comment-27285569" class="comment">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Does it test against quoted strings? No.</span>
+                &ndash;&nbsp;
+                    <a href="/users/1857292/jimmy-kane"
+                       title="3294 reputation"
+                       class="comment-user">Jimmy Kane</a>
+                <span class="comment-date" dir="ltr"><span title="2013-08-31 14:26:08Z" class="relativetime-clean">Aug 31 '13 at 14:26</span></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-3856657" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="19730306"></a>
+<div id="answer-19730306" class="answer" data-answerid="19730306" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="19730306">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p><a href="https://pypi.python.org/pypi/MarkupSafe" rel="nofollow">Markupsafe</a> is a good Python library for cross-site scripting prevention.  It's included in <a href="https://developers.google.com/appengine/docs/python/tools/libraries27" rel="nofollow">Google App Engine</a>, used by <a href="http://jinja.pocoo.org/docs/intro/#markupsafe-dependency" rel="nofollow">Jinja2 (2.7 and up)</a>, etc.</p>
+
+<p><strong>Here is their regular expression for stripping HTML tags</strong> (<a href="https://github.com/mitsuhiko/markupsafe/blob/master/markupsafe/__init__.py" rel="nofollow">GitHub file link</a>, look for <code>_striptags_re</code>):</p>
+
+<pre><code>re.sub(r'(&lt;!--.*?--&gt;|&lt;[^&gt;]*&gt;)', '', text)
+</code></pre>
+
+<p>You can stop reading now, unless you want to know how it works...</p>
+
+<hr>
+
+<p>Here's a string that I'll use for demonstration purposes:</p>
+
+<pre><code>&gt;&gt;&gt; demo = '''&lt;b&gt;Normal stuff.&lt;/b&gt;
+... &lt;!-- commented &lt;b&gt;out&lt;/b&gt; --&gt;
+... &lt;script&lt;script&gt;&gt;alert("Hi!")&lt;&lt;/script&gt;/script&gt;'''
+</code></pre>
+
+<p>Here's @mmmdreg's regular expression from above:</p>
+
+<pre><code>&gt;&gt;&gt; print re.sub(r'&lt;[^&lt;]*?&gt;', '', demo)
+Normal stuff.
+&lt;!-- commented out --&gt;
+&lt;script&gt;alert("Hi!")&lt;/script&gt;
+</code></pre>
+
+<p>Woops, it let the <code>&lt;script&gt;</code> through!  (Thanks @Julio García).  Your web site just logged your user's password and sent it to bad-guys.com.  Cross-site scripting is the <a href="https://www.owasp.org/index.php/Top_10_2013-Top_10" rel="nofollow">third most common vulnerability</a> on the web.</p>
+
+<p>Here's the Markupsafe version, with the special handling of HTML comments removed:</p>
+
+<pre><code>&gt;&gt;&gt; print re.sub(r'&lt;[^&gt;]*&gt;', '', demo)
+Normal stuff.
+out --&gt;
+&gt;alert("Hi!")/script&gt;
+</code></pre>
+
+<p>Better.  One of the effects of that regular expression is that it's impossible to have matching open and close brackets - any matching brackets are deleted.  So it's fixed the &lt;script&gt; problems.</p>
+
+<p>It doesn't handle the comment very well, though.  We probably don't want the contents of the comment to show up at all.  In addition, comments often contain tags inside themselves, so special handling is useful:</p>
+
+<pre><code>&gt;&gt;&gt; print re.sub(r'(&lt;!--.*?--&gt;|&lt;[^&gt;]*&gt;)', '', demo)
+Normal stuff.
+
+&gt;alert("Hi!")/script&gt;
+</code></pre>
+
+<p>So this has removed the comment and de-fanged the script, as we would hope.  Yay!</p>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/19730306" title="short permalink to this answer" class="short-link" id="link-post-19730306">share</a><span class="lsep">|</span><a href="/posts/19730306/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="/posts/19730306/revisions" title="show all edits to this post">edited <span title="2013-11-08 20:47:04Z" class="relativetime">Nov 8 '13 at 20:47</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-11-01 15:51:12Z" class="relativetime">Nov 1 '13 at 15:51</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/88198/rescdsk"><div><img src="https://www.gravatar.com/avatar/9ad80bde2ad7ad60b41bceceb38fe2aa?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/88198/rescdsk">rescdsk</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">3,690</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="17 silver badges"><span class="badge2"></span><span class="badgecount">17</span></span><span title="20 bronze badges"><span class="badge3"></span><span class="badgecount">20</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-19730306" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-19730306" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="4869866"></a>
+<div id="answer-4869866" class="answer" data-answerid="4869866" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="4869866">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>This method works flawlessly for me and requires no additional installations:</p>
+
+<pre><code>import re
+import htmlentitydefs
+
+def convertentity(m):
+    if m.group(1)=='#':
+        try:
+            return unichr(int(m.group(2)))
+        except ValueError:
+            return '&amp;#%s;' % m.group(2)
+        try:
+            return htmlentitydefs.entitydefs[m.group(2)]
+        except KeyError:
+            return '&amp;%s;' % m.group(2)
+
+def converthtml(s):
+    return re.sub(r'&amp;(#?)(.+?);',convertentity,s)
+
+html =  converthtml(html)
+html.replace("&amp;nbsp;", " ") ## Get rid of the remnants of certain formatting(subscript,superscript,etc).
+</code></pre>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/4869866" title="short permalink to this answer" class="short-link" id="link-post-4869866">share</a><span class="lsep">|</span><a href="/posts/4869866/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2011-02-02 01:23:05Z" class="relativetime">Feb 2 '11 at 1:23</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/467090/john"><div><img src="https://www.gravatar.com/avatar/95c231233b30e7e7a1e7c0740fe36815?s=32&d=identicon&r=PG" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/467090/john">John</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,395</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="18 silver badges"><span class="badge2"></span><span class="badgecount">18</span></span><span title="37 bronze badges"><span class="badge3"></span><span class="badgecount">37</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-4869866" class="comments" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+
+    <tr id="comment-9471453" class="comment">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received"
+                                      class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">This decodes HTML entities to plain text, but obviously doesn&#39;t actually strip any tags, which was the original question. (Also, the second try-except block needs to be de-indented for the code to even do as much).</span>
+                &ndash;&nbsp;
+                    <a href="/users/136796/soren-lovborg"
+                       title="3101 reputation"
+                       class="comment-user">S&#248;ren L&#248;vborg</a>
+                <span class="comment-date" dir="ltr"><span title="2011-10-15 13:07:27Z" class="relativetime-clean">Oct 15 '11 at 13:07</span></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+        </td>
+    </tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-4869866" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+
+  
+<a name="21333355"></a>
+<div id="answer-21333355" class="answer" data-answerid="21333355" >
+    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="21333355">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text">
+            <p>The solutions with HTML-Parser are all breakable, if they run only once:</p>
+
+<pre><code>html_to_text('&lt;&lt;b&gt;script&gt;alert("hacked")&lt;&lt;/b&gt;/script&gt;
+</code></pre>
+
+<p>results in:</p>
+
+<pre><code>&lt;script&gt;alert("hacked")&lt;/script&gt;
+</code></pre>
+
+<p>what you intend to prevent. if you use a HTML-Parser, count the Tags until zero are replaced:</p>
+
+<pre><code>from HTMLParser import HTMLParser
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+        self.containstags = False
+
+    def handle_starttag(self, tag, attrs):
+       self.containstags = True
+
+    def handle_data(self, d):
+        self.fed.append(d)
+
+    def has_tags(self):
+        return self.containstags
+
+    def get_data(self):
+        return ''.join(self.fed)
+
+def strip_tags(html):
+    must_filtered = True
+    while ( must_filtered ):
+        s = MLStripper()
+        s.feed(html)
+        html = s.get_data()
+        must_filtered = s.has_tags()
+    return html
+</code></pre>
+
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/a/21333355" title="short permalink to this answer" class="short-link" id="link-post-21333355">share</a><span class="lsep">|</span><a href="/posts/21333355/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-01-24 12:58:15Z" class="relativetime">Jan 24 at 12:58</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/3232060/user3232060"><div><img src="https://www.gravatar.com/avatar/d50c37cca52a4f8830e572cb275d6e3d?s=32&d=identicon&r=PG&f=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/3232060/user3232060">user3232060</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1</span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</td>
+        </tr>
+
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-21333355" class="comments dno" data-localized="true">
+		    <table>
+			    <tbody data-remaining-comments-count="0" 
+			           data-addlink-html="add comment" 
+			           data-addlink-disabled="true">
+					    <tr><td></td><td></td></tr>
+			    </tbody>
+		    </table>
+	    </div>
+			<a id="comments-link-21333355" data-rep=50 data-anon=true
+			   class="comments-link disabled-link" 
+			   title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." 
+				>add comment</a>
+    </td>
+</tr>
+    </table>
+</div>
+									<a name='new-answer'></a>
+						<form id="post-form" action="/questions/753052/answer/submit" method="post"  class="post-form">
+							<input type="hidden" id="post-id" value="753052" />
+							<h2 class="space">Your Answer</h2>
+
+
+
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: true,
+            discardSelector: ".discard-answer"
+            ,immediatelyShowMarkdownHelp:true
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="9f415699b696c49a0300146fe000d4c1">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item dno new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="/users/login?returnurl=%2fquestions%2f753052%2fstrip-html-from-strings-in-python%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid" />
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false" />
+                    <input type="button" class="submit-openid" value="Submit" style="display:none" />
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f753052%2fstrip-html-from-strings-in-python%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href='http://stackexchange.com/legal/privacy-policy' target='_blank'>privacy policy</a> and <a href='http://stackexchange.com/legal/terms-of-service' target='_blank'>terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1" />								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice">
+Not the answer you&#39;re looking for?							Browse other questions tagged <a href="/questions/tagged/python" class="post-tag" title="show questions tagged &#39;python&#39;" rel="tag">python</a> <a href="/questions/tagged/html" class="post-tag" title="show questions tagged &#39;html&#39;" rel="tag">html</a>  or <a href="/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2009-04-15 18:24:26Z"><b>4 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>57815 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2014-01-24 12:58:15Z">2 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </table>
+			    </div>
+						
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk830511883",17).setZone(45) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk830511883">
+            </div>  
+    <div id="hireme">
+        <script>
+window.careers_adurl="//careers.stackoverflow.com/gethired/js",window.careers_cssurl="//cdn-careers.sstatic.net/careers/gethired/sidebar.min.css?v=ed74a1a226c6",window.careers_leaderboardcssurl="//cdn-careers.sstatic.net/careers/gethired/ninja.min.css?v=f0774d5c89a6",window.careers_companycssurl="//cdn-careers.sstatic.net/careers/gethired/company",window.careers_adselector="div.hireme, div#hireme",StackExchange.ready(function(){$.ajax({url:"//cdn-careers.sstatic.net/careers/gethired/loader.min.js?v=6cc1ffa381c1",dataType:"script",cache:!0})});        </script>
+    </div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="/q/1642262" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="/questions/1642262/how-do-you-elimate-all-html-tags-xml-tags-with-beautifulsoup" class="question-hyperlink">How do you elimate all HTML tags/XML tags with BeautifulSoup?</a>
+</div><div class="spacer">
+	<a href="/q/8616841" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">0</div>
+	</a>
+	<a href="/questions/8616841/remove-the-html-tags-in-regex" class="question-hyperlink">Remove the Html tags in regex</a>
+</div><div class="spacer">
+	<a href="/q/12787157" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">1</div>
+	</a>
+	<a href="/questions/12787157/how-to-remove-texts-within-html-tags-in-python" class="question-hyperlink">How to remove texts within html tags in python?</a>
+</div><div class="spacer">
+	<a href="/q/9662346" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">8</div>
+	</a>
+	<a href="/questions/9662346/python-code-to-remove-html-tags-from-a-string" class="question-hyperlink">Python code to remove HTML tags from a string</a>
+</div><div class="spacer">
+	<a href="/q/4607920" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="/questions/4607920/python-strip-html-from-text-data" class="question-hyperlink">Python: strip html from text data</a>
+</div><div class="spacer">
+	<a href="/q/3998165" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="/questions/3998165/html-code-processing" class="question-hyperlink">HTML code processing</a>
+</div><div class="spacer">
+	<a href="/q/12823568" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">3</div>
+	</a>
+	<a href="/questions/12823568/python-strip-xml-tags-from-document" class="question-hyperlink">Python strip XML tags from document</a>
+</div><div class="spacer">
+	<a href="/q/9230675" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="/questions/9230675/python-html-processing" class="question-hyperlink">Python html processing</a>
+</div><div class="spacer">
+	<a href="/q/11151000" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="/questions/11151000/is-there-a-way-to-use-readability-and-python-to-extract-just-text-not-html" class="question-hyperlink">Is there a way to use readability and python to extract just text, not HTML?</a>
+</div><div class="spacer">
+	<a href="/q/11061058" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">4</div>
+	</a>
+	<a href="/questions/11061058/using-htmlparser-in-python-3-2" class="question-hyperlink">Using HTMLParser in Python 3.2</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/753052">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer">
+<a href="/q/231767" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">2430
+    </div>
+</a><a href="/questions/231767/the-python-yield-keyword-explained" class="question-hyperlink">The Python yield keyword explained</a>
+</div>
+<div class="spacer">
+<a href="/q/265960" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted large">122
+    </div>
+</a><a href="/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python" class="question-hyperlink">Best way to strip punctuation from a string in Python</a>
+</div>
+<div class="spacer">
+<a href="/q/457701" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">38
+    </div>
+</a><a href="/questions/457701/best-way-to-strip-html-tags-from-a-string-in-sql-server" class="question-hyperlink">Best way to strip html tags from a string in sql server?</a>
+</div>
+<div class="spacer">
+<a href="/q/4047344" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/4047344/cleaning-and-stripping-of-strings-html-python" class="question-hyperlink">Cleaning and stripping of strings/HTML - Python</a>
+</div>
+<div class="spacer">
+<a href="/q/8318911" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted extra-large">1531
+    </div>
+</a><a href="/questions/8318911/why-does-html-think-chucknorris-is-a-color" class="question-hyperlink">Why does HTML think “chucknorris” is a color?</a>
+</div>
+<div class="spacer">
+<a href="/q/12570705" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/12570705/how-to-encode-content-to-html-within-beautifulsoup-python" class="question-hyperlink">How to encode content to HTML within BeautifulSoup Python</a>
+</div>
+<div class="spacer">
+<a href="/q/17126686" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/17126686/extracting-data-from-html-with-python" class="question-hyperlink">Extracting data from HTML with Python</a>
+</div>
+<div class="spacer">
+<a href="/q/20621751" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/20621751/how-to-store-multiline-text-in-html-textarea-from-python" class="question-hyperlink">How to store multiline text in html textarea from python?</a>
+</div>
+<div class="spacer">
+<a href="/q/20766217" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="/questions/20766217/removing-html-tags-and-entities-from-string-in-python" class="question-hyperlink">Removing html tags and entities from string in python</a>
+</div>
+<div class="spacer">
+<a href="/q/21971646" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="/questions/21971646/strip-the-html-tags-and-return-only-text-using-mechanize-in-python" class="question-hyperlink">strip the html tags and return only text using mechanize in python</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="//stackexchange.com/questions?tab=hot" 
+           class="js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li >
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/25506/do-russians-smile-at-each-other" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do Russians smile at each other?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/105935/how-is-gravity-consistent-when-you-split-an-object-into-multiple-pieces" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How is gravity consistent when you split an object into multiple pieces?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/54953/when-should-a-top-bar-be-fixed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When should a top bar be fixed?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="http://salesforce.stackexchange.com/questions/31422/ways-for-the-test-to-check-the-apex-code-is-doing-the-right-thing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Ways for the test to check the apex code is doing the right thing
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/734267/probability-a-random-walk-is-back-at-the-origin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Probability a random walk is back at the origin
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/45865/shorter-way-to-write-multiple-if-then-else-if" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Shorter way to write multiple if-then-else-if
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/52923/are-gay-rights-ever-addressed-in-star-trek" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are gay rights ever addressed in Star Trek?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/168768/how-to-use-concrete-fonts" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to use concrete fonts?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/49144/center-column-height-on-tripods" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Center column height on tripods
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/25003/sort-a-number-sorta" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Sort-a-number. Sorta
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/52957/what-blinks-in-the-game-of-thrones-intro" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What blinks in the &quot;Game of Thrones&quot; intro?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/35673/how-can-i-use-improvised-consequences-to-make-combat-more-interesting" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I use improvised consequences to make combat more interesting?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/35658/how-do-i-remove-a-poorly-designed-rule-without-my-players-feeling-cheated" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I remove a poorly-designed rule without my players feeling cheated?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/122447/reduce-the-over-use-of-files-in-text-processing" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Reduce the over use of files in text processing
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/22773463/javascript-assignment-with-comma" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    JavaScript assignment with comma
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/18741/citing-a-hollywood-movie-in-a-scientific-paper" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Citing a Hollywood movie in a scientific paper
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/21779/how-to-bring-my-focus-back-on-technical-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to bring my focus back on technical work?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-graphicdesign" title="Graphic Design Stack Exchange"></div><a href="http://graphicdesign.stackexchange.com/questions/28871/can-this-design-be-considered-as-a-banner" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:174 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can this design be considered as a banner?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/441458/can-a-windows-virus-transfer-to-ubuntu" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a Windows virus transfer to Ubuntu?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="http://bicycles.stackexchange.com/questions/20938/is-it-a-good-idea-to-switch-to-hub-gear" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it a good idea to switch to hub gear?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/18761/leaving-soft-money-job-for-tenure-track-position-that-doesnt-start-until-august" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Leaving soft-money job for tenure track position that doesn&#39;t start until August: when to tell current advisor?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-judaism" title="Mi Yodeya"></div><a href="http://judaism.stackexchange.com/questions/36817/alternative-non-gematria-explanations-of-the-remove-his-teeth-line" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:248 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Alternative (non-gematria) explanations of the &quot;remove his teeth&quot; line
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-cs" title="Computer Science Stack Exchange"></div><a href="http://cs.stackexchange.com/questions/23295/expected-number-of-updates-of-minimum" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:419 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Expected number of updates of minimum
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/585650/demoted-domain-controller-still-authenticating-users" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Demoted domain controller still authenticating users
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" 
+           class="show-more js-show-more js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/753052" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/753052/ivc/7282');});
+</script>
+<noscript>
+    <div><img src="/posts/753052/ivc/7282" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-py</div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="/about">about</a>
+                    <a href="/help">help</a>
+                        <a href="/help/badges">badges</a>
+                    <a href="http://blog.stackexchange.com?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com">chat</a>
+                    <a href="http://data.stackexchange.com">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/about/hiring">jobs</a>
+                    <a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MjAsImNtIjo5NTQsImNoIjoxMTc4LCJjciI6Mjc3NiwiZG0iOjQsImZjIjoyODYyLCJmbCI6Mjc1MSwibnciOjIyLCJydiI6MCwicHIiOjExNSwic3QiOjAsInVyIjoiaHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL2Fib3V0L2NvbnRhY3QiLCJyZSI6MX0&s=hRods5B22XvRBwWIwtIMekcyNF8">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tr>
+            <th colspan=3>
+                Technology
+            </th>
+            <th >
+                Life / Arts
+            </th>
+            <th >
+                Culture / Recreation
+            </th>
+            <th >
+                Science
+            </th>
+            <th >
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com" title="users of Mathematica">Mathematica</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (14)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (12)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackoverflow.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Overflow</a></li>
+                        <li><a href="http://area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo &#169; 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.3.31.1505
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('python,html');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        
+        ga('set', 'dimension2', '|python|html|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+    </body>
+</html>

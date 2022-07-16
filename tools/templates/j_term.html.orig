@@ -1,0 +1,21 @@
+{% block content %}
+<script type="text/javascript">
+
+
+var term= {'{{term}}':[]};
+{% regroup rows by sense as sense_list %}
+{% for s in sense_list%}
+term['{{ term }}'][{{ s.grouper }}]=[];
+{% for i in s.list %}
+term['{{ term }}'][{{ s.grouper }}].push(
+ {'type':'{{ i.link }}', 'def':'{{ i.sdef }}', 'llemma':'{{ i.linklem }}'  }
+);
+{% endfor %}
+{% endfor %}
+
+{% if tags %}
+  var tagbs = {{ tags|safe }};
+{% endif %}
+</script>
+
+{% endblock %}

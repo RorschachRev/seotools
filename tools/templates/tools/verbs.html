@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Verbs {% endblock %}
+{% block content %}
+        <h1> Verbs Research</h1>
+<table border='1'>
+	<tr class="res">
+            <th>Lemma</th>
+            <th>ID</th>
+            <th>Definition</th>
+            <th>Parse Model</th>
+        </tr>
+        {% for r in rows%}
+        <tr class="res">
+            <td>{{r.lemma}} </td>
+            <td>{{r.synsetid}} </td>
+            <td>{{r.definition}} </td>
+            <td>{{r.parse}} </td>
+        </tr>
+        {% endfor %}
+</table>
+    {% endblock %}

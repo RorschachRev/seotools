@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Terms{% endblock %}
+{% block content %}
+<h1>Terms Research: {{term}}</h1>
+    <script>
+var terms = {};
+{% regroup rows by pos as term_by_pos %}
+  {% for pos in term_by_pos %}
+
+  terms['{{ pos.grouper }}']=Array();
+  {% regroup pos.list by sense as term_list %}
+    {% for t in term_list %}
+      terms['{{ pos.grouper }}'][{{ t.grouper }}]={
+            {% for item in t.list %} '{{ item.linklem }}':'{{ item.link }}',
+            {% endfor %}
+    }
+    {% endfor %}
+    {% endfor %}
+    </script>
+
+{% regroup rows by pos as term_by_pos %}
+  {% for pos in term_by_pos %}
+  {% regroup pos.list by sense as term_list %}
+  {% for t in term_list %}
+    <li>{{ pos.grouper }} {{ t.grouper }}: 
+{% for i in t.list|slice:":1" %}
+{{ i.sdef }} {% endfor %}
+    <ul> {% for item in t.list %}
+          <li> {{ item.linklem }}: ({{ item.link }}) </li> {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+{% endfor %}
+
+<table border='1'>
+	<tr class="res">
+            <th>PoS</th>
+            <th>Sense</th>
+            <th>Lemma</th>
+            <th>Type</th>
+            <th>Def</th>
+            <th>Lemma</th>
+        </tr>
+        {% for r in rows %}
+        <tr class="res">
+            <td>{{r.pos}} </td>
+            <td>{{r.sense}} </td>
+            <td>{{r.swlem}} </td>
+            <td>{{r.link}} </td>
+            <td>{{r.sdef}} </td>
+            <td>{{r.linklem}} </td>
+        </tr>
+        {% endfor %}
+</table>
+    {% endblock %}

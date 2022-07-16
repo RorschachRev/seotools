@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}SEO Gods:  {% if u.group == 7 %}Free{% endif %}{% if u.group == 8 %}Free{% endif %}{% if u.group >= 9 %}Advanced{% endif %} PageRank Estimation Tool{% endblock %}
+{% block content %}               
+<div style="padding:10px;" style="font-family: Segoe UI,Arial,sans-serif;">
+<div style="height:135px;">
+<img style="float:left;" src="http://www.seogods.net/wp-content/uploads/2014/04/header11.png" height="130px" alt="SEO Gods: Keyword Vocabulary Builder">
+
+<h1 style="text-align:center; margin-top:15px; color:#333; font-size:40px;">SEO Gods: PageRank Estimation Tool</h1>
+<p style="margin-top:-20px;">Estimate the actual PageRank of your website.</p>
+</div>
+<h1> {% if u.group == 7 %}Free{% endif %}{% if u.group == 8 %}Free{% endif %}{% if u.group >= 9 %}Advanced{% endif %} PageRank Estimation</h1>
+<p>{{u.user}}'s account for Domain {{u.web}} is membership level is
+{% if u.group == 7 %}Free{% endif %}{% if u.group == 8 %}Basic{% endif %}{% if u.group == 9 %}Advanced{% endif %}{% if u.group == 10 %}Premiere{% endif %}{% if u.group == 11 %}Enterprise{% endif %}</p>
+{% if dom.pagerank >= 0 %}<h3>Your toolbar PageRank: <img src="http://www.seogods.net/img/pr{{dom.pagerank}}.gif" /></h3>
+<h3>Your estimated actual PageRank is: {{u.prest}}</h3>
+{% else %} Your domain has not been indexed or returned an error. Get some backlinks!{% endif %}
+{% endblock %}

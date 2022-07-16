@@ -1,0 +1,1 @@
+db=MySQLdb.connect(host="localhost", user="wn_sg", passwd="JNf8Aa87yhU7273U", db="wn_sg") 

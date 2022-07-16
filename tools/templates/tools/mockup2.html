@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% block title %} SEOGods Tools for Members only {% endblock %}
+{% block content %}
+<style>
+  table.meaning, .meaning tr, .meaning td,  .meaning button { padding: 1; } 
+td, th {padding:10px;}
+</style>
+<script>
+var pageterm= Array('{{ terms|join:"', '" }}');	//Server side Array of the terms we are going to look up. Will run for loop after page loads.
+var tokens= Array('{{ tokens|join:"', '" }}');	//Server side
+// TODO: fix we'll
+var terms = {}; 		//MUST exist before able to call the misc scripts for each term
+function v(obj, t){		//Button clicks alter display.
+	var tense=document.getElementById(t).getAttribute('tense');
+	var pos= document.getElementById(t).getAttribute('pos');	
+	x= terms[t][pos][tense];
+	$("#view").html('<ul>');
+	for(var prop in x){ 
+		var s = "<li>"+prop +" : "+ x[prop]+"</li>";
+		$("#view").append(s);
+	}
+	$("#view").append('</ul>');
+}
+</script>
+<script>
+var pt=0;
+var check = function(){
+    if(Object.keys(terms).length != pageterm.length){
+	console.log("check: "+Object.keys(terms).length +" "+pageterm.length);
+	getterm(pageterm[pt]);
+        setInterval(check, 300);
+    }
+}
+$(function() {	check();	});	//After JQuery and DOM is ready
+
+function getterm(term){
+	if (pt < pageterm.length){	//Safety check on query
+		pt++;	//increment global counter to simulate a for loop
+		var u = "http://tools.seogods.net/termj/"+term +"/";
+		console.log(u);
+		var data = {};
+		$.getScript( u, function( data, textStatus, jqxhr ) { 	//This populates "terms"
+			console.log(Object.keys(terms).length +" "+pageterm.length+" "+u);
+			//~ if (Object.keys(terms).length == pageterm.length){
+				loadterms();
+			//~ }
+		});
+	} else { 
+		console.log( pt +" "+pageterm.length);
+	}
+}
+var termtabletext="";
+function loadterms() {
+	termtabletext="<tr><th>Term</th><th>Part of Speech</th><th>Current Meaning Selected</th><th># of Meanings</th><th>View</th></tr>";
+	for(var i=0; i<pageterm.length; i++){
+		var prop= pageterm[i];
+		if (terms.hasOwnProperty(prop)){
+			var z = terms[prop];
+			var x2d= pos='';
+			var syn='&nbsp;';
+			var x2c= tense= 0;			
+			if (z.hasOwnProperty('v')) { 		//pro version: a, r, s
+				x2d=  z['v']['def'][1];
+				tense = 1;
+				pos = 'v';
+				x2c+=  z['v'].length -1; 
+			} 
+			if (z.hasOwnProperty('n')) { 		//noun overwrites verb. TODO later Check POS tag from tuple.
+				x2d=  z['n']['def'][1]; 
+				tense = 1;
+				pos = 'n';
+				x2c+=  z['n'].length -1; 
+			} 
+			if (x2c > 0 ) { 
+				syn= '<button onclick="v(this, \''+prop+'\')";>'+prop+'</button>';
+			} 			
+			termtabletext +='<tr id="'+prop+'" tense='+tense+' pos='+pos+'><td>'+prop +'</td><td class="pos">'+pos+'</td><td class="def">'
+				+x2d+'</td><td class="meaning"><button onclick="meanb(this)" id="'+prop+'">'
+				+x2c+'</button></td><td>'+syn+'</td></tr>';
+			$('table#termstable').html(termtabletext);
+		}
+	}
+}
+</script>
+<script>
+function cw(term, pos, tense){
+	t=document.getElementById(term);
+	t.setAttribute('tense',tense);
+	t.setAttribute('pos',pos);
+	var y=terms[term][pos]['def'][tense];
+	$("#"+term+" > .def").html(y);
+	$("#"+term+" > .pos").html(pos);
+}
+function meanb(obj){
+	t=obj.getAttribute('id');
+	var meanh="<table class='meaning'>";
+	if (terms.hasOwnProperty(t)){
+		var z = terms[t];
+		var i;
+		if (z.hasOwnProperty('v')) { 
+			for ( i=1; i<  z['v'].length; i++){ 
+				meanh+= "<tr><td style='width:45px'><button onclick=\"cw('"+t+"','v','"+i+"')\">v "+i+"</button></td><td>"+ z['v']['def'][i]+"</td></tr>";
+			}
+		} 
+		if (z.hasOwnProperty('n')) { 
+			for ( i=1; i<  z['n'].length; i++){ 
+				meanh+= "<tr><td style='width:45px'><button onclick=\"cw('"+t+"','n','"+i+"')\">n "+i+"</button></td><td>"+ z['n']['def'][i]+"</td></tr>";
+			}		
+		} 
+	} 
+	meanh+="</table>";
+	$("#dialog_"+t).html(meanh);
+	$("#dialog_"+t).dialog("open");
+}
+$(function() {
+{% for t in terms %}$( "#dialog_{{t}}" ).dialog({autoOpen: false, height: 300, width: 485});{% endfor %}
+});
+</script>
+<style id="nkdyehonvglc" type="text/css">a[rel*="nofollow"] { outline: 1px dashed rgba(255,0,0,0.5) !important; }</style><script>try {  for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){    var lastpass_f = document.forms[lastpass_iter];    if(typeof(lastpass_f.lpsubmitorig)=="undefined"){      if (typeof(lastpass_f.submit) == "function") {        lastpass_f.lpsubmitorig = lastpass_f.submit;        lastpass_f.submit = function(){          var form = this;          try {            if (document.documentElement && 'createEvent' in document)            {              var forms = document.getElementsByTagName('form');              for (var i=0 ; i<forms.length ; ++i)                if (forms[i]==form)                {                  var element = document.createElement('lpformsubmitdataelement');                  element.setAttribute('formnum',i);                  element.setAttribute('from','submithook');                  document.documentElement.appendChild(element);                  var evt = document.createEvent('Events');                  evt.initEvent('lpformsubmit',true,false);                  element.dispatchEvent(evt);                  break;                }            }          } catch (e) {}          try {            form.lpsubmitorig();          } catch (e) {}        }      }    }  }} catch (e) {}</script><link rel="stylesheet" type="text/css" href="SEO%20Gods%20%20Keyword%20Vocabulary%20Builder_files/injected.css"></head><body class="ui-widget ui-widget-content ui-corner-all ui-front">
+<div style="padding:10px;"> 
+<img style="float:left;" src="http://www.seogods.net/wp-content/uploads/2014/04/header11.png" width="450px" height="150px" alt="SEO Gods: Keyword Vocabulary Builder">               
+<h1 style="text-align:center; margin-top:25px; color:#333; font-size:40px;">Keyword Vocabulary Builder</h1>
+<h3 style="text-align:center; color:#999; margin-top:-20px;">Semantically focused web copy is essential to on-page search engine optimization.</h3>
+<p style="clear:both;">Use this tool to build a powerful controlled vocabulary for your targeted search phrase. This will allow you to draft highly optimized semantically focused copy for your web pages. Please <a href="http://www.seogods.net/wp-content/uploads/2014/05/Keyword-Vocabulary-Builder-Guide.pdf">download the user guide</a> for detailed instructions on useage.</p>
+
+<p style="font-size:11px">Please note that normal punctuation will be removed, and strange punctuation will be safely escaped into unusable html. If any 
+punctuation remains after submitting your text, remove the punctuation and try again. Very bad punctuation will simply be replaced with a sample.</p>
+<p style="font-size:11px">Your version of this tool is the {% if u.group == 8 %}Basic{% endif %}{% if u.group >= 9 %}Advanced{% endif %} focusing on Nouns and Verbs for SEO 
+purposes, with a limit of {% if u.group == 8 %}5{% endif %}{% if u.group >= 9 %}20{% endif %} nouns and verbs per request. 
+{% if u.group == 8 %}The Advanced version allows paragraphs to be submitted with a maximum of 20 nouns and verbs per request. {% endif %}
+The Enterprise edition (coming soon) will allows adjectives, adverbs and URLs to be requested.</p>
+</div>
+<div id='source'>
+<!-- output0 spew input back out -->
+<form action = '' method='post'>
+<textarea style="width: 1000px; height: 112px;" id="inputtext" cols="60" rows="3" name="inputtext">{{ tokens|join:' '}}</textarea>
+<input type="submit" name="submit" value="Submit" />
+{% csrf_token %}
+</form>
+</div>
+<div id='output'>
+<!-- output1 --><p>{{ withpos|join:' '}}</p>
+</div>
+<!-- output2 -->
+<div class="ui-widget">
+	<table border='1' id="termstable"><tr><th>Term</th><th>Part of Speech</th><th>Current Meaning Selected</th><th># of Meanings</th><th>View</th></tr>
+	</table>
+</div>
+<div id="view">
+</div>
+<!-- output3 -->
+{% spaceless %}{% for t in terms %}
+<div id="dialog_{{t}}" title="Meanings for {{t}}">
+  <p>{{t}}</p><table></table>
+</div>
+{% endfor %}{% endspaceless %}
+{% endblock %}
+ 

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} SEOGods Tools for Members only {% endblock %}
+{% block content %}
+<h1>Word Lookup</h1>
+<script>
+function load(t){
+	window.location.href = "/term/"+t;
+	return ();
+}
+</script>
+<input type="text" autofocus="true" defaultValue="stuff" onclick='load(this)'>stuff</input>
+{% endblock %}
+
+Ian, when you're awake - check the contents of the input. Create a button that loads the JS. Maybe pass parent as parameter?

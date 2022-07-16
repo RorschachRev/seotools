@@ -1,0 +1,11 @@
+<div id="dashboard">
+<table border="1" style="width:100%; text-align:center;">
+<tr>
+<td><img src="" alt="toolbar icon" width="30px" height="30px"></td>
+<td>Welcome: {{u.user}}</td>
+<td>Subscription Level: {% if u.group == 7 %}Free{% endif %}{% if u.group == 8 %}Basic{% endif %}{% if u.group == 9 %}Advanced{% endif %}{% if u.group == 10 %}Premiere{% endif %}{% if u.group == 11 %}Enterprise{% endif %}</td>
+<td>Alerts: None</td>
+<td>Help</td>
+</tr>
+</table>
+</div>

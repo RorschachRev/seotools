@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} SEOGods Tools for Members only {% endblock %}
+{% block content %}
+<div style="padding:10px;" style="font-family: Segoe UI,Arial,sans-serif;">
+<div style="height:135px;">
+<img style="float:left;" src="http://www.seogods.net/wp-content/uploads/2014/04/header11.png" height="130px" alt="SEO Gods: Keyword Vocabulary Builder">
+<h1 style="text-align:center; margin-top:15px; color:#333; font-size:40px;">SEO Gods: Backlink Analysis Tool</h1>
+<p style="margin-top:-20px;">Get a rich and informative look at {{u.web}} backlinks. </p>
+</div>
+<p>{{urls.total}} web pages indexed.</p>
+{% if u.group >= 10 %}<form action = '' method='post'>
+<input type="text" id='domainin' name='domainin'></input>
+<input type="submit" name="submit" value="Submit" />
+{% csrf_token %}</form>{% endif %}
+<table id='backlinks' border="1px"><tr><th>#</th><th>Backlink Domain</th><th>Domain PageRank</th><th>Domain PR Real</th>
+<th>IP</th><th>URL</th><th>Follow</th><th>PagePR</th><th>PagePR Real</th>
+</tr>
+{% for u in db %} <tr><td>{{forloop.counter}}</td><td>{{ u.doc_domain.domain_fqdn}}</td><td>{{ u.doc_domain.pagerank}}</td><td>
+{{ u.doc_domain.pagerank_real}}</td><td>{{u.doc_domain.domainIP}}</td><td>{{ u.url_page}}</td><td></td><td>{{ u.page_PR}}</td><td> {{ u.page_PRreal}} </td></tr>
+{% endfor %}
+</table>
+
+{{ urls.WebDomain.pagerank_real}}<br>{{ urls.WebDomain.subnetIP}}<br>{{ urls.WebDomain.subnetIP}}<br>{{ urls.WebDomain.pagerank_real}}  <br>{{ urls.page_PRreal}}
+{% endblock %}	

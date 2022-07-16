@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %} SEOGods Tools for Members only {% endblock %}
+{% block content %}
+<style> th { padding:7px; }</style>
+<div style="padding:10px;" style="font-family: Segoe UI,Arial,sans-serif;">
+<div style="height:135px;">
+<img style="float:left;" src="http://www.seogods.net/wp-content/uploads/2014/04/header11.png" height="130px" alt="SEO Gods: Keyword Vocabulary Builder">
+<h1 style="text-align:center; margin-top:15px; color:#333; font-size:40px;">SEO Gods: Member's Area</h1>
+<p style="margin-top:-20px;">Here you will find information about your account, important updates and access to your toolset. New tools are being added weekly. Welcome to SEO Gods.</p>
+</div>
+
+<h3>Currently Active Tools</h3>
+<table border="1" style="font-family: Segoe UI,Arial,sans-serif;">
+<tr><th style="padding:10px;">Keyword Tools</th><th>Description</th><th>Member</th><th>Status</th></tr>
+<tr><td>Basic Keyword Vocabulary Builder</td><td>Using our exclusive language analysis technologies this innovative tool will help you draft highly optimized text content and bring to light new keywords to explore for inclusion in your SEO campaigns.</td>
+<td>Basic</td><td>{% if u.group >= 8 %}<a href="/keyword-vocab.html">Use Now</a>{% else %}<a href="http://www.seogods.net/?page_id=134&level=8">Upgrade{% endif %}</td></tr>
+<tr><td>Advanced Keyword Vocabulary Builder</td><td>Basic version features and allows you to submit paragraphs</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}<a href="/keyword-vocab.html">Use Now</a>{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Dictionary Lookup Tool</td><td>A Glorified Dictionary, the term lookup tool won't break new ground, but it's a standard all SEOs need.</td>
+<td>Free</td><td>Use Now</td></tr>
+<tr><td>Verb Lookup Tool</td><td>Provides lexical analysis for verbs. Currently in development but pending integration with other tools to be developed.</td>
+<td>Free</td><td><a href="/term-verb.html">Use Now</a></td></tr>
+
+<tr><th>On Page Tools</th><th>Description</th><th>Member</th><th>Status</th></tr>
+<tr><td>Free PageRank Estimation Tool</td><td> Estimate the actual (not toolbar) PageRank of your Home Page. (Domain only).</td>
+<td>Free</td><td><a href="/pr_estimate.html">Use Now</a></td></tr>
+<tr><td>Advanced PageRank Estimation Tool</td><td>Estimate the actual (not toolbar) PageRank of any url. (Page and Domain)</td>
+<td>Basic</td><td>{% if u.group >= 8 %}<a href="/pr_estimate.html">Use Now</a>{% else %}<a href="http://www.seogods.net/?page_id=134&level=8">Upgrade</a>{% endif %}</td></tr>
+<tr><th>Off Page Tools</th><th>Description</th><th>Member</th><th>Status</th></tr>
+<tr><td>My Site Backlink Analysis Tool</td><td>Check Backlinks to the site linked in your profile with details like IP address, Google PageRank and more. Incremental enhancements daily.</td>
+<td>Free</td><td><a href="/backlinks.html">Use Now</a></td></tr>
+<tr><td>Any Site Backlink Analysis Tool</td><td>Check Backlinks to the site linked in your profile with details like IP address, Google PageRank and more. Incremental enhancements daily.</td>
+<td>Premier</td><td>{% if u.group >= 10 %}<a href="/backlinks.html">Use Now</a>{% else %}<a href="http://www.seogods.net/?page_id=134&level=10">Upgrade</a>{% endif %}</td></tr>
+</table>
+
+
+<h3>Tools In Development</h3>
+<table border="1" style="font-family: Segoe UI,Arial,sans-serif;">
+<tr><th>Keyword Tools</th><th>Description</th><th>Member</th><th>Status</th></tr>
+<tr><td>Free Keyword Search Traffic Estimation Tool</td><td> Using a variety of sources we provide the most accurate search traffic data for up to 20 targeted search phrases.</td>
+<td>Free</td><td>Coming Soon</td></tr>
+<tr><td>Advanced Keyword Search Traffic Estimation Tool</td><td>Free version features and finds keywords in any page you submit</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Keyword Concordance Tool</td><td>For your site, one of the most important tools for understanding how Google determines which meaning of a word is used.</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Free Keyword ROI Demystifier</td><td> Determine the potential profitability of your targeted search phrases.</td>
+<td>Free</td><td>Coming Soon</td></tr>
+<tr><td>Advanced Keyword ROI Demystifier</td><td>Free version features and we'll save you time by performing your position lookups for you!</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Coming Soon{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+
+<tr><th>On Page Tools</th><th>Description</th><th>Member</th><th>Status</th></tr>
+<tr><td>Indexing Simulator Tool</td><td>See how Google interacts with and indexes your website. Identify barriers to indexing that are affecting your rankings.</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>On-Page SEO Analysis Tool</td><td>The Single Most Sophisticated Detailed and Actionable Data regarding On-page SEO available to SEOs.</td>
+<td>Premier</td><td>{% if u.group >= 10 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=10">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Sitemap Generator</td><td>A fast and accurate xml sitemap generator for your website.</td><td>Free</td><td>Coming Soon</td></tr>
+<tr><td>High Powered Backlink Finder Tool</td><td> Identify the backlinks that you need to target to outrank your top competitors. Limits increase with membership level</td>
+<td>Basic</td><td>{% if u.group >= 8 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=8">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Keyword Difficulty Calculator</td><td> Determine what it takes to rank for your targeted keywords.</td><td>Basic</td><td>{% if u.group >= 8 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=8">Upgrade</a>{% endif %}</td></tr>
+<tr><td>PageRank Planning Tool</td><td> Find what it will take to achieve a specific targeted PageRank and then identify the backlinks to target to accomplish that goal.</td><td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}Upgrade{% endif %}</td></tr>
+
+<tr><th>Off Page Tools</th><th>Description</th><th>Member</th><th>Status</th></tr>
+<tr><td>Access Probability</td><td> A proprietary search engine optimization metric that gives you an insightful view of the performance of your campaigns.</td>
+<td>Basic</td><td>{% if u.group >= 8 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=8">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Search Engine Rank Position (SERP) Tracking</td><td>Track the location of your page on search engines for various terms.</td>
+<td>Basic</td><td>{% if u.group >= 8 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=8">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Free Competitor Identification Tool</td><td> Identify and analyze your actual SEO competitors. Get actionable business intelligence on how to beat them.</td>
+<td>Free</td><td>Use Now</td></tr>
+<tr><td>Advanced Competitor Identification Tool</td><td> Identify and analyze your actual SEO competitors. Get actionable business intelligence on how to beat them.</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Topical Community Mapping Tool</td><td> Identify the key places on the web where interaction will result in improved market penetration and authority recognition.</td>
+<td>Enterprise</td><td>{% if u.group >= 11 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=11">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Reputation Dashboard</td><td> A full scale digital reputation management platform. Become aware of and respond to negative reputation activity in real time. Identify and leverage opportunities to improve reputation.</td>
+<td>Enterprise</td><td>{% if u.group >= 11 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=11">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Competitor Site Backlink Analysis Tool</td><td>Check Backlinks for Competitors identified by the Adv Competitor Analysis Tools with details like IP address, Google PageRank and more.</td>
+
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Perception Index Calculator</td><td> An innovative and highly accurate tool that gives you an accurate look at how the world at large views your website, brand and/or organization.</td>
+<td>Premiere</td><td>{% if u.group >= 10%}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=10">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Keyword Group Generator</td><td> Generate groups of compatible keywords to enhance your targeted search phrases.</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+<tr><td>Backlink Concordance Tool</td><td>For your backlinks, one of the most important tools for understanding how Google determines which meaning of a word is used.</td>
+<td>Advanced</td><td>{% if u.group >= 9 %}Use Now{% else %}<a href="http://www.seogods.net/?page_id=134&level=9">Upgrade</a>{% endif %}</td></tr>
+</table>
+
+<ul>External Tools
+<li><a href="http://www.semrush.com/?ref=14138863">Semrush.com</a></li>
+</ul>
+{% endblock %}
